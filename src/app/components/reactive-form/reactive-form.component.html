@@ -1,0 +1,89 @@
+<div class="container mt-5">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row">
+    <div class="col-md-6">
+      <label for="nome">Nome:</label>
+      <input
+        type="text"
+        id="nome"
+        formControlName="nome"
+        class="form-control"
+      />
+
+      <label for="cognome">Cognome:</label>
+      <input
+        type="text"
+        id="cognome"
+        formControlName="cognome"
+        class="form-control"
+      />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+      />
+
+      <label for="confermaPassword">Conferma Password:</label>
+      <input
+        type="password"
+        id="confermaPassword"
+        formControlName="confermaPassword"
+        class="form-control"
+      />
+
+      <label for="genere">Sesso:</label>
+      <select id="genere" formControlName="genere" class="form-control">
+        <option *ngFor="let gender of generi" [value]="gender">
+          {{ gender }}
+        </option>
+      </select>
+
+      <label for="biografia">Biografia:</label>
+      <textarea
+        id="biografia"
+        formControlName="biografia"
+        class="form-control"
+        [class.is-invalid]="
+          getFormC('biografia')?.invalid &&
+          (getFormC('biografia')?.dirty || getFormC('biografia')?.touched)
+        "
+      ></textarea>
+
+      <div formGroupName="userInfo">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="form-control"
+        />
+
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+        />
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="immagineProfilo">Immagine Profilo:</label>
+      <input
+        type="file"
+        id="immagineProfilo"
+        formControlName="immagineProfilo"
+        class="form-control-file"
+      />
+    </div>
+
+    <div class="col-md-12 mt-3">
+      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
